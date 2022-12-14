@@ -59,7 +59,94 @@ str1 = str2 ; // char数组是不可以的。
 ```
 string类有一些size(), strlen(charr)等一些对字符串的操作。
 
-# 结构体
+# 结构
+就是结构体
 ```c++
+// 声明一个结构
+struct inflatable
+{
+    char name[20];
+    float volume;
+    double pricle;
+}
+
+// 赋值变量
+inflatable a  = {"Bambi",0.5,21.99};
+inflatable guests[2] = 
+{
+    {"Bambi",0.5,21.99},
+    {"Godzilla",2000,22.99}
+}
+// 声明和赋值
+struct student
+{
+    int age;
+} stu = 
+{
+    12 //age
+}
+```
+
+# 共用体
+类似rust中枚举类型
+
+```c++
+union one4all
+{
+    int int_val;
+    long long_val;
+    double double_val;
+}
+// 声明赋值
+one4all pail;
+// 在不同的时间可以存不同类型。但是同时只能存一种。内存大小为最大类型的大小。
+pail.int_val = 12;
+pail.double_val = 3.445;
+
+// 可以在结构体中这样写
+struct widget
+{
+    int type;
+    union id 
+    {
+        long id_num;
+        char id_char[20];
+    } id_val;
+};
+```
+# 枚举
+类似java和go中的枚举类型。
+```c++
+enum spectrum{red,orange,yellow ,green,blue,violet,indigo,ultraviolet};
+
+// 声明赋值
+spectrum band;
+band = blue;
+band = orange;
+band = spectrum(1)//orange
+// 枚举量是整型，可以升级成int类型。
+int color = bule；
+
+// 如果只要枚举常量，这样创建，类似go中 iota
+enum {red,orange,yellow ,green,blue,violet,indigo,ultraviolet};
+
+// 枚举赋值，可以只赋值里面部分的常量值，需要的时候再看。
+```
+
+# 指针和自由存储空间
+指针和c，rust中一样。只需要记住两点：
+1. 指针是有类型的,要看声明类型。
+2. 指针的值必须要由 &变量 获取。
+```c++
+int updates = 6;
+int * p_updates;// 声明时 * 前后空格没什么用。甚至可以 int*p_updates
+p_updates = &updates;
+// 还可以
+int higgens = 5；
+int * pt = &higgens；
+```
+## 1. 用new分配内存
+```c++
+int * ps = new int;
 
 ```
