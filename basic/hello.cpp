@@ -1,9 +1,11 @@
 #include <iostream>
+#include <array>
 int main()
 {
     using namespace std;
-    cout << "Come up and C++ me some time.";
-    cout << endl;
-    cout << "You won't regret it !" << endl;
-}
 
+    array<int, 4> a = {1, 2, 3, 4};
+    array<int, 4> b;
+    b = a;
+    cout << b[1];
+}
