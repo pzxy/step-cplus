@@ -1,9 +1,9 @@
 
-#include <iostream>;
-#include <fstream>;
+#include <iostream>
+#include <fstream>
 
 int main(){
     using namespace std;
     ofstream outFile;
-    outFile.open("ch6file.xyxy");
+    outFile.open("ch6file.txt");
 }
