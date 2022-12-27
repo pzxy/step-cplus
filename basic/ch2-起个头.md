@@ -22,7 +22,7 @@ int main()
 问： #include <iostream> ?
 13/12/2022 22:02 答：iostream文件中内容会和hello.cpp一同发送给编译器。编译器组合成符合文件，下一阶段使用这个文件。
 
-![595a898b2f07947564d6e9979074ce25.png](:/bb7388c088a44d8687f85efda22defb2)
+![ch2.1.png](./image/ch2.1.png)
 总结：头文件无论如何c++都能用。优先 新式风格。
 
 换行： `cout << endl`  ，字符串中使用`\n`也可以
