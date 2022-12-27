@@ -145,8 +145,39 @@ p_updates = &updates;
 int higgens = 5；
 int * pt = &higgens；
 ```
-## 1. 用new分配内存
+## 用new在堆上分配内存，delete释放内存
 ```c++
-int * ps = new int;
+int * ps = new int;// 创建一个指针，指向int大小的空间
+*ps = 1；// 使用指针
+
+
+struct inflatable
+{
+    float volume;
+}
+inflatable * ps = new inflatable;
+(*ps).volume; // 通过指针访问变量
+delete ps; //释放ps
 
 ```
+
+# 数组替代品 vector 和 array
+vector在名称空间std中,动态数组，数据在堆中。
+```c++
+//创建0大小的数组或者int， vector<typeName> vt(n_elem)
+vector<int> vi; 
+vector<int> vi2(4); //里面4个元素
+```
+c++11 array，std中，数据在栈上，大小固定，快。要考虑overflow问题
+
+```c++
+// array<typeName,n_elem> arr;
+array<int,5> ai;// 创建5个int的数组对象
+array<int,5> a2 = {1,2,3,4,5};// 创建并赋值
+
+```
+异同：
+1. array和vector都可以通过下标来访问。
+2. array对象可以赋值给另一个array对象。对于数组，必须逐元素复制数组。如果array对象大小长度不同不能互相赋值。
+
+注意：下标越界问题，尝试使用`a.at(1) = 23` 来访问下标。
