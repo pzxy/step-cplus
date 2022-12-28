@@ -1,5 +1,7 @@
 # inline
 内联可以减少函数的调用，在go中都是编译器自己判断将一些小块代码进行内联的。
+在类定义中的定义的函数都是内联函数，即使没有使用 inline 说明符。
+
 ```C++
 inline double square(double x){return x*x}
 ```
