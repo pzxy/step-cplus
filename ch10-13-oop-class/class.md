@@ -43,7 +43,7 @@ int main( )
 }
 
 ```
-# [析构函数](./line.cpp)
+# 析构函数
 析构函数的名称与类的名称是完全相同的，只是在前面加了个波浪号（~）作为前缀，它不会返回任何值，也不能带有任何参数。它会在每次删除所创建的对象时执行。析构函数有助于在跳出程序（比如关闭文件、释放内存等）前释放资源。
 
 ```c++
@@ -72,6 +72,7 @@ int main( )
    return 0;
 }
 ```
+例子：[line.cpp](./line.cpp)
 
 
 # 复制构造函数
@@ -96,7 +97,7 @@ friend可以修饰函数或者类，让其访问自己的私有成员。
 
 提供了一种方式可以让别人访问自己的私有成员。
 为什么别的语言中没有这个功能呢？比如go语言。
-因为在go中，可以直接访问同一个包中的其他结构的私有变量。准确的说go中的私有变量其实相当于 c++中的protected 限定。 而c++里面的这种友元类型，可以不在同一个包中也能访问私有变量，这种能力甚至超过了protected 简直不能理解。完全是引狼入室。
+因为在go中，可以直接访问同一个包中的其他结构的私有变量。准确的说go中的私有变量其实相当于 c++中的protected 限定。 而c++里面的这种友元类型，可以不在同一个包中也能访问私有变量，这种能力甚至超过了protected 简直不能理解,引狼入室。
 
 
 ```C++
@@ -130,4 +131,58 @@ int main( )
    printWidth( box );
    return 0;
 }
+```
+
+# this指针
+
+this 指针是所有成员函数的隐含参数，每一个对象都能通过 this 指针来访问自己的地址。
+
+```c++
+class Box
+{
+   public:
+      // 构造函数定义
+      Box(double l=2.0, double b=2.0, double h=2.0)
+      {
+         cout <<"Constructor called." << endl;
+         length = l;
+         breadth = b;
+         height = h;
+      }
+      double Volume()
+      {
+         return length * breadth * height;
+      }
+      int compare(Box box)
+      {
+        // 一个指向类的指针访问成员要用 ->
+        // 比如 ptrBox = &Box; 我们要访问Box类中的成员,必须 ptrBox -> Volume()
+        // 也从另外一面说明了是 this指针 其实是指向对象自己。
+         return this->Volume() > box.Volume(); // this指针
+      }
+   private:
+      double length;     // Length of a box
+      double breadth;    // Breadth of a box
+      double height;     // Height of a box
+};
+```
+
+# 静态成员
+
+使用static关键字可以修饰成员变量和成员函数，不管这个类创建多少个，静态成员变量只会有一份。而静态成员函数只能调用别的静态成员函数，或者静态成员变量。和java里面的静态成员差不多。
+
+```C++
+class Box
+{
+   public:
+      static int objectCount;
+      static int getCount()
+      {
+         return objectCount;
+      }
+};
+// 初始化 Box 的静态成员
+int Box::objectCount = 0;
+// 调用
+Box::getCount()
 ```
