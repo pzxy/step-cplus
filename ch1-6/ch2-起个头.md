@@ -49,3 +49,8 @@ ss = simon(1)
 
 # 总结
 cin，cout对象是 istream 和 ostream类的实例
+
+# 编译器
+-  Windows 使用 MSVC
+-  Linux ，使用 GCC用 
+-  macOS ，使用 Clang（但如果操作系统比 Mojave 老的话，苹果提供的开发工具不能完整支持 C++17；你需要升级操作系统，或者使用非苹果的编译器——如 Homebrew 提供的 gcc 和 llvm [1]）
