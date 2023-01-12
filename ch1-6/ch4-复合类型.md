@@ -46,7 +46,7 @@ cin.get(name,20).get();
 使用getline()时，上个输入键入的回车如果没有被消耗掉会被直接读取。所以可以将get()放在getline()前来消耗掉这个回车。(cin >> year).get() 
 
 # string类
-string类也在std命名空间中，其实命名空间就相当于rust中的crate。而string其实就相当于java中的String对象一样。里面有一些方法。并且对操作符进行了重载。
+string类也在std命名空间中，其实命名空间就相当于rust中的mod。而string其实就相当于java中的String对象一样。里面有一些方法。并且对操作符进行了重载。
 string就是正常理解的字符串，可以做一些拼接等操作
 使用： `#include<string>`
 ```c++
