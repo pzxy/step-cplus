@@ -61,6 +61,13 @@
         "variant": "cpp",
         "vector": "cpp",
         "algorithm": "cpp",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "fstream": "cpp",
+        "iomanip": "cpp",
+        "stack": "cpp",
+        "iterator": "cpp",
+        "__tree": "cpp",
+        "map": "cpp"
     }
 }
