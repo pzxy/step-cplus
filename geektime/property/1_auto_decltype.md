@@ -41,6 +41,20 @@ auto get_a_set()              // auto作为函数返回值的占位符
     return s;
 }
 ```
+泛型化
+```cpp
+
+auto f = [](const auto& x)        // 参数使用auto声明，泛型化
+{
+    return x + x;
+};
+
+cout << f(3) << endl;             // 参数类型是int
+cout << f(0.618) << endl;         // 参数类型是double
+
+string str = "matrix";
+cout << f(str) << endl;          // 参数类型是string
+```
 
 # decltype
 decltype获取变量的类型，不仅能够推导出值类型，还能够推导出引用类型，也就是表达式的“原始类型。

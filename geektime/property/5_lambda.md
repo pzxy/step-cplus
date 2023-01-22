@@ -1,0 +1,1 @@
+但“轻度”使用 lambda 表达式也能够改善代码，比如用“map+lambda”的方式来替换难以维护的 if/else/switch，
