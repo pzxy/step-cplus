@@ -34,7 +34,7 @@ int main()
     std::vector<uint8_t> b5(size4, 0);
     for (int i = 0; i < size4; i++)
     {
-        b5[size4 - 1 - i] = (i5 >> (i * 8)) & 0xFF;
+        b5[size4 - 1 - i] = (i5 >> (i * 8));
     }
     std::cout << "b5: ";
     print_bytes(b5);
