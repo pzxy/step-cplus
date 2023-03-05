@@ -1,3 +1,9 @@
 .DS_Store
 */.DS_Store
 .vscode
+
+CMakeFiles
+*/CMakeFiles
+
+cmake/demo8/_CPack_Packages
+cmake/demo8/demo8*

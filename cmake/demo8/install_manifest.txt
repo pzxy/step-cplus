@@ -1,0 +1,2 @@
+/Users/pzxy/Workspace/C++/cplus_step/cmake/demo8/_CPack_Packages/Darwin/TGZ/demo8-1.0.1-Darwin/bin/demo
+/Users/pzxy/Workspace/C++/cplus_step/cmake/demo8/_CPack_Packages/Darwin/TGZ/demo8-1.0.1-Darwin/include/config.h
