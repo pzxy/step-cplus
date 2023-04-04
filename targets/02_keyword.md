@@ -94,7 +94,7 @@ veep.accesses++; // 允许
 ```cpp
 const volatile restrict inline friend
 ```
-volatile 和寄存器相关,用到再去看
+volatile 修饰的代码,编译器不在进行优化,从而每次都从原来位置来读取这个值.
 inline 内联
 friend 提供一种方式让别人访问自己私有变量. 基本不用,太离谱.
 
@@ -106,7 +106,7 @@ try catch throw
 ```cpp
 dynamic_cast reinterpret_cast static_cast const_cast 
 ```
-
+dynamic_cast 将一个基类指针或引用转换成派生类指针或引用
 # 8)其它关键字
 ```cpp
 typedef sizeof operator typename namespace alignof alignas constexpr decltype using nullptr static_assert noexcept sizeof  decltype(auto)
