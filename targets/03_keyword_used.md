@@ -191,3 +191,80 @@ int square(volatile int *ptr) {
     return a * a; 
 }
 ```
+
+# union & bit field
+union是一种特殊的类,里面的变量公用一个空间,有些类似rust中的枚举.
+```cpp
+union u_box {
+  struct box st_box;     
+  unsigned int ui_box;
+};
+```
+
+bit field重新定义变量大小,需要的时候再去查
+```cpp
+struct _PRCODE
+{
+	unsigned int code1: 2;
+	unsigned int cdde2: 2;
+	unsigned int code3: 8;
+};
+```
+
+# extern
+C++支持函数重载，C++函数编译后生成的符号带有函数参数类型的信息，而C则没有。
+
+例如int add(int a, int b)函数经过C++编译器生成.o文件后，add会变成形如add_int_int之类的, 而C的话则会是形如_add, 就是说：相同的函数，在C和C++中，编译后生成的符号不同。
+
+这就导致一个问题：如果C++中使用C语言实现的函数，在编译链接的时候，会出错，提示找不到对应的符号。此时extern "C"就起作用了：告诉链接器去寻找_add这类的C语言符号，而不是经过C++修饰的符号。
+```cpp
+// c语言中不支持extern "C",只有 extern.
+extern "C" {
+    int add(int x,int y);
+}
+```
+
+# struct & class
+两者区别不大,cpp中,struct和class都可以有析构函数,都可以继承和多态.
+struct中默认权限是public,class中默认权限是private的.
+struct定义基类和派生的例子:
+```cpp
+struct Shape {
+    virtual double area() const = 0;
+};
+
+struct Circle : public Shape {
+    double radius;
+    Circle(double r) : radius(r) {}
+    double area() const override {
+        return 3.14 * radius * radius;
+    }
+};
+
+```
+# explicit 
+
+explicit 修饰构造函数时，可以防止隐式转换和复制初始化
+explicit 修饰转换函数时，可以防止隐式转换，但按语境转换除外
+
+https://github.com/pzxy/CPlusPlusThings/blob/master/basic_content/explicit/explicit.cpp
+
+ - [ ] todo: 后面要仔细梳理一下这个类型转换问题.
+
+ # friend
+ 友元提供了一种 普通函数或者类成员函数 访问另一个类中的私有或保护成员 的机制. 感觉很不好, 代码结构会非常乱. 了解一下,不用这东西.
+
+ ```cpp
+ class A{
+public:
+    A(int _a):a(_a){};
+    // 类B是类A的友元，那么类B可以直接访问A的私有成员
+    friend class B;
+private:
+    int a;
+};
+
+ ```
+
+ # using
+ using 
