@@ -68,6 +68,13 @@
         "stack": "cpp",
         "iterator": "cpp",
         "__tree": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "bit": "cpp",
+        "functional": "cpp",
+        "memory_resource": "cpp",
+        "numeric": "cpp",
+        "random": "cpp",
+        "utility": "cpp",
+        "numbers": "cpp"
     }
 }
