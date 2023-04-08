@@ -1,4 +1,9 @@
-[assert](#assert) [const](#const) [static](#static) 
+[assert](#assert) [const](#const) [static](#static) [this](#this) [inline](#inline) 
+[函数指针](#函数指针) [虚函数](#虚函数) [虚表](#虚表) [virtual](#virtual) [dynamic_cast](#dynamic_cast) 
+[volatile](#volatile) [union&bitfield](#union和bitfield) [extern](#extern) [struct和class](#struct和class) [explicit](#explicit) 
+[friend](#friend) [using](#using) [::](#::) [enum](#enum) [decltype](#decltype) 
+[define](#define)
+
 # assert
 
 ```cpp
@@ -193,7 +198,7 @@ int square(volatile int *ptr) {
 }
 ```
 
-# union & bit field
+# union和bitfield
 union是一种特殊的类,里面的变量公用一个空间,有些类似rust中的枚举.
 ```cpp
 union u_box {
@@ -225,7 +230,7 @@ extern "C" {
 }
 ```
 
-# struct & class
+# struct和class
 两者区别不大,cpp中,struct和class都可以有析构函数,都可以继承和多态.
 struct中默认权限是public,class中默认权限是private的.
 struct定义基类和派生的例子:
