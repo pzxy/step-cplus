@@ -1,3 +1,4 @@
+[assert](#assert) [const](#const) [static](#static) 
 # assert
 
 ```cpp
@@ -90,7 +91,7 @@ sizeof(A);
 # 函数指针
 可以声明函数指针变量和函数指针类型
 ```cpp
-// FuncPtr 是一种类型,这种方式很通用.方便.
+// 1. FuncPtr 是一种类型,这种方式很通用.方便.
 typedef void (*FuncPtr)(void);
 
 void func() { 
@@ -102,7 +103,7 @@ int main() {
     fp(); 
     return 0;
 }
-// 如果只是简单使用,直接创建一个函数指针变量用
+// 2. 如果只是简单使用,直接创建一个函数指针变量用
 void func() { 
     cout << "This is a function." << endl;
 }
@@ -267,4 +268,93 @@ private:
  ```
 
  # using
- using 
+using 可以引入标识符（如函数名、变量名等）.引入就是从其定义所在的作用域引入到当前作用域中，使得当前作用域中也可以使用该标识符.
+它的基本用法是:
+```cpp
+using 标识符（如函数名、变量名等）
+using 别名 = 类型
+```
+例子:
+```cpp
+// 1. 使用命名空间
+using namespace std;
+// 2. 取别名,类似c中的typedef 
+typedef vector<int> V1; 
+using V2 = vector<int>;
+```
+还有一些偏的用法,了解就行
+```cpp
+// 1. 改变访问权限,私有继承,却可通过 using来访问
+class Derived : private Base {
+    public:
+    using Base::size;
+    protected:
+    using Base::n;
+};
+// 2. 重载,这里有两个f函数.Derived对象调用f(),会调用base中的f()方法.
+class Derived : private Base {
+    public:
+        using Base::f;
+        void f(int n){
+            cout<<"Derived::f(int)"<<endl;
+        }
+};
+```
+
+# ::
+- 全局作用域符（::name）：用于类型名称（类、类成员、成员函数、变量等）前，表示作用域为全局命名空间
+- 类作用域符（class::name）：用于表示指定类型的作用域范围是具体某个类的
+- 命名空间作用域符（namespace::name）:用于表示指定类型的作用域范围是具体某个命名空间的
+```cpp
+int count1=0;    // 全局(::)的count
+
+class A {
+public:
+    static int count2;  // 类A的count (A::count)
+};
+
+int A::count2;
+::count1=1; // 设置全局的count1为1
+A::count2=2; // 设置类A的count2为2
+```
+# enum
+枚举类型是一种类型,值的内存布局和整数一样,默认从0开始填充.但是是另外一种类型,所以和整数不能相互赋值.
+```cpp
+// 值分别为7、1、2、3、4、5、6。
+// 可以进行赋值和关系运算(==,>=等),以及标准输出.
+enum week {Sun=7, Mon=1, Tue, Wed, Thu, Fri, Sat};
+cout << week::Sun << endl; 
+```
+枚举类,有了区域限制 ,但类中不能有方法.
+```cpp
+enum class week {Sun=7, Mon=1, Tue='a', Wed, Thu, Fri, Sat};
+// 98
+cout << static_cast<int>(week::Wed) << endl;
+// b
+cout << static_cast<char>(week::Wed) << endl;
+```
+
+# decltype
+判断表达式的类型`decltype (expression)`
+```cpp
+int i = 4;
+decltype(i) a; //推导结果为int。a的类型为int。
+// 与using/typedef合用
+using size_t = decltype(sizeof(0));
+// 泛型
+template <typename T>
+auto multiply(T x, T y)->decltype(x*y)
+{
+	return x*y;
+}
+```
+- [ ] todo: 左值右值这些.如果e是一个被重载的函数，则会导致编译错误。 否则 ，假设e的类型是T，如果e是一个将亡值，那么decltype（e）为T&& 否则，假设e的类型是T，如果e是一个左值，那么decltype（e）为T&。 否则，假设e的类型是T，则decltype（e）为T。
+
+# define
+定义一段字符,在引用的地方替换掉.
+不到万不得已,不去用宏.
+```cpp
+#define PI 3.1415926
+// 宏定义中的参数必须用括号括起来，以避免优先级问题
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+```
