@@ -89,8 +89,8 @@ void capacityString()
     s1.resize(200);                // 设置总大小。也就是 size()的值。在go中是len的大小。
     assert(s1.size() == 200);
     auto before_cap = s1.capacity();
-    s1.shrink_to_fit();           // 释放多余空间。 并不一定会减少到cap和len一样大小。但是cap会减少。
-    assert(s1.capacity() < before_cap); // 
+    s1.shrink_to_fit();                 // 释放多余空间。 并不一定会减少到cap和len一样大小。但是cap会减少。
+    assert(s1.capacity() < before_cap); //
 
     // 总结一下：
     //  s1.size() 就是go中的len，
@@ -100,9 +100,39 @@ void capacityString()
     //  shrink_to_fit() 释放多余未使用的空间。并不一定会将cap减少到和len一样大小。但是cap会减少。
 }
 
+/**
+ * Modifiers 修改
+ */
+void modifiersString()
+{
+    cout << "modifilersString" << endl;
+    string s1 = "Hello world";
+    s1.clear();
+    assert(s1.empty() == true);
+    s1.insert(0, "Hello");
+    s1.insert(5, " ");
+    s1.insert(6, "world");
+    cout << s1 << endl;
+
+    s1.erase(5, 1); // 从第5个字符开始，删除一个字符。
+    cout << s1 << endl;
+
+    s1.push_back('!'); // 在尾部添加一个字符
+    cout << s1 << endl;
+
+    s1.pop_back(); // 删除尾部一个字符
+    cout << s1 << endl;
+
+    std::string s2 = "good";
+    s1.swap(s2); // 交换两个字符串
+    cout << s1 << endl;
+    cout << s2 << endl;
+}
+
 int main()
 {
     // iteratorString();
     // accessString();
-    capacityString();
+    // capacityString();
+    modifiersString();
 }
