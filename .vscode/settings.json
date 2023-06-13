@@ -76,6 +76,7 @@
         "random": "cpp",
         "utility": "cpp",
         "numbers": "cpp",
-        "__verbose_abort": "cpp"
+        "__verbose_abort": "cpp",
+        "queue": "cpp"
     }
 }
