@@ -79,6 +79,7 @@
         "__verbose_abort": "cpp",
         "queue": "cpp",
         "set": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "unordered_set": "cpp"
     }
 }
