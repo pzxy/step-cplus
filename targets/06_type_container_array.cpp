@@ -1,6 +1,11 @@
 #include <array>
 #include <iostream>
 #include <cassert>
+
+
+#define ARRAY_LEN(a) \
+  (sizeof(a) / sizeof((a)[0]))
+
 void iteratorsArray()
 {
     std::cout << "iteratorsArray" << std::endl;
@@ -39,6 +44,7 @@ void capacityArray()
 {
     std::cout << "capacityArray" << std::endl;
     std::array<int, 10> arr = {1, 2, 3, 4, 5};
+    
     assert(arr.size() == 10);
     assert(arr.max_size() == arr.max_size()); // string的max_size()是非常大的，和虚拟内存大小有关。
     assert(arr.empty() == false);

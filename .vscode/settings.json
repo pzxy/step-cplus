@@ -77,6 +77,8 @@
         "utility": "cpp",
         "numbers": "cpp",
         "__verbose_abort": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "set": "cpp",
+        "filesystem": "cpp"
     }
 }
