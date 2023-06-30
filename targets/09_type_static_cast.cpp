@@ -104,6 +104,7 @@ void static_cast_demo()
     // ------static_cast甚至可以把任何表达式都转换成void类型；
     // ------satic_cast不能移除变量的const属性，请参考const_cast操作符；
     // ------static_cast进行的是简单粗暴的转换，所以其正确性完全由程序员自己保证。
+    // static_cast可以强行跳过类型系统。强制类型转换。
 }
 int main()
 {
