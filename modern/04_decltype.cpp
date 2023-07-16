@@ -100,6 +100,8 @@ struct A
 {
     double x;
 };
+const A *a = new A();
+decltype((a->x));
 void demo5()
 {
     cout << "> demo5 基本推导规则" << endl;
@@ -155,16 +157,14 @@ int main()
     demo7();
 }
 
-// 总结：
-// auto 推导类似一种占位符。
-// const int i = 5; auto &m = i; auto推导类型为const int，m推导类型为const int&
-// 很直观的能看出来，const int用auto占位了。
+// auto总结： 根据表达式初始化类型推导类型。
+// 1. auto 推导默认会去除 cv限定符和符号(引用和指针)。 const int i = 5;auto j=i;推导出j是int，而不是const int 。
+// 2. 如果auto 后面加上了 & 或者 *，则保留cv限定符和符号(引用和指针)。const int i = 5; auto &m = i; auto推导类型为const int，m推导类型为const int&
 // auto 常用于迭代器遍历，模版函数返回类型推导，lambda表达式。
 // 不能在机构体中当变量类型，如果当需要是静态常量
 
-// decltype 推导复杂，规则如下
-// 1. 函数推导返回值
-// 2. 常量本值，左值推导T&，右值推导T&&
-// 推导的时候不是简单的占位，会在原类型基础上进行转换。
+// decltype 总结: 根据表达式来查询类型。所以返回的是变量或者表达式本身的类型。
+// 1. decltype推导默认保留 cv限定符和符号(引用和指针)。const int i = 0; decltype(i)推导类型为const int
+// 2. 如果是获取对象里面的变量的值，并且也没加括号，则不会保留 cv限定符和符号(引用和指针)。比如 decltype(a->x)这样的。也可以理解，因为是查询x的类型。
+// 3. 常量本值，左值推导T&，右值推导T&&，因为左值右值都是表达式，表达式都返回引用，因此，只能是T&或者T&&
 // 可以在结构体中当变量类型。
-
