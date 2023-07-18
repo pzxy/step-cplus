@@ -1,4 +1,7 @@
 #include <iostream>
+#include <vector>
+#include <string>
+#include <map>
 using namespace std;
 // 1. 基本语法
 // 定义 [ captures ]<typename T> ( params ) specifiers exception -> ret { body }
@@ -102,10 +105,36 @@ void demo7()
 // 也就是说c++20以后标准已经不支持[=]隐式捕获this指针了。
 
 // 10. 模版语法的泛型lambda表达式。
+// 省略一堆 使用auto作为泛型的弊端例子。
+// 官方给出方案。[]<typename T>(T t){}
+void demo10()
+{
+    cout << "> demo10" << endl;
+    auto f = []<typename T>(T const &x)
+    {
+        T copy = x;
+        using Iterator = typename T::iterator;
+    };
+    std::vector<int> v;
+    f(v);
+}
 
+// 11. 可构造和可复制的无状态lambda表达式。
+void demo11()
+{
+    cout << "> demo11" << endl;
+    auto greater = [](auto x, auto y)
+    { return x > y; };
+    // 定义了一个无状态的lambda表达式greate，
+    // 然后使用decltype(greater)获取其类型作为模板实参传入模板
+    // (C++20支持，编译时增加 -std=c++20)
+    std::map<std::string, int, decltype(greater)> mymap;
+}
 int main()
 {
     demo2();
     demo6();
     demo7();
+    demo10();
+    demo11();
 }
