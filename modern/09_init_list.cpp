@@ -57,7 +57,7 @@ struct Point
 void demo5()
 {
     cout << "> demo5" << endl;
-    // 必须顺序指定，因为c++中初始化时是顺序初始化的。
+    // 必须顺序指定，因为c++中初始化时是顺序初始化的 。
     Point p{.x = 4, .y = 5};
     cout << p.z << endl;
 }
