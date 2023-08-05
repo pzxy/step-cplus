@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 // 什么是聚合类型？
 // 聚合类型是可以用{}来初始化的类型。
@@ -76,7 +77,7 @@ public:
 void demo3()
 {
     cout << "> demo3" << endl;
-    DerivedData d{};
+    // DerivedData d{};
     // g++ --std=c++14 15_aggregate_type.cpp 编译成功
     // g++ --std=c++17 15_aggregate_type.cpp 编译失败
     // g++ --std=c++20 15_aggregate_type.cpp 编译失败
@@ -85,9 +86,102 @@ void demo3()
 }
 
 // 4. 禁止聚合类型使用用户声明的构造函数
+// 这里两个是用户声明的构造函数，而不是用户创建。
+// X和Y此时都是聚合函数，因为用户没有创建。
+struct X
+{
+    X() = default;
+};
+struct Y
+{
+    Y() = delete;
+};
+struct Z
+{
+private:
+    Z() = default;
+};
+void demo4()
+{
+    cout << "> demo4" << endl;
+    std::cout << std::boolalpha
+              << "std::is_aggregate_v<X> : " << std::is_aggregate_v<X> << std::endl
+              << "std::is_aggregate_v<Y> : " << std::is_aggregate_v<Y> << std::endl;
+    // Y y1 编译失败，因为Y的构造函数被删除了。
+    // Y y1;
+    // 只有C++17编译成功，因为这没有使用构造函数，而是聚合初始化的方式。c++20编译失败是因为在20中，声明函数也会认为是自己创建的，那么就是会被当作非聚合对象。
+    // Y y2{};
+
+    // 编译失败，因为Z的构造方法是私有的。
+    // Z z1;
+    // 只有c++17编译成功。原因同上。
+    // Z z2{};
+}
+
+// 在c++17中为了避免出现上面的问题，会这样写。这样的话，X2，Y2就会被转变为非聚合类型。也就不能通过{}来初始化了。
+struct X2
+{
+    explicit X2() = default;
+};
+struct Y2
+{
+    Y2();
+};
+Y2::Y2() = default;
+// 还有另外一个问题，就是复制构造
+// 在17中可以编译的代码，在20中就不能编译了。
+// 下面的代码在17中是聚合函数，在20中是非聚合函数。会造成编译都无法通过的问题。
+// 所以针对禁止复制构造，不能用 =delete这样的写法。
+struct X3
+{
+    std::string s;
+    std::vector<int> v;
+    X3() = default;
+    X3(const X3 &) = delete;
+    X3(X3 &&) = default;
+};
+
+// 而是加入或者继承一个不可复制构造的类型来实现类型的不可复制。
+class NonCopyable
+{
+public:
+    NonCopyable() = default;
+    ~NonCopyable() = default;
+
+private:
+    NonCopyable(const NonCopyable &) = delete;
+    NonCopyable &operator=(const NonCopyable &) = delete;
+};
+
+struct X40
+{
+    std::string s;
+    std::vector<int> v;
+    [[no_unique_address]] NonCopyable nc;
+};
+// 或者
+struct X4 : NonCopyable
+{
+    std::string s;
+    std::vector<int> v;
+};
+
+void demo42()
+{
+    cout << "> demo42" << endl;
+    std::cout << std::boolalpha
+              << "std::is_aggregate_v<X40> : " << std::is_aggregate_v<X40> << std::endl
+              << "std::is_aggregate_v<X4> : " << std::is_aggregate_v<X4> << std::endl;
+
+    X4 x4{};
+}
+// 5. 使用带小括号的列表初始化聚合类型对象。这个特性只在gcc中有，所以略过这个。
+// 而且我们平时都建议使用{},所以关于()的例子，就不去做笔记了，用到的时候再看书上这部分。
 int main()
 {
     demo1();
     demo2();
     demo3();
+    demo4();
+    demo42();
 }
