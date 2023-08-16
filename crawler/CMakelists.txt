@@ -15,7 +15,7 @@ set(CMAKE_VERBOSE_MAKEFILE OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # 设置项目名
-project(XCRAWLER CXX C)
+project(XCRAWLER)
 
 # 这些选项变量都是定义的，定义的这些变量可以通过 ${变量名} 的方式来使用。这里它的默认值就是OFF
 # 如果要启用某个选项，可以在cmake命令后面加上 -D变量名=ON，比如-DXENABLE_CODE_COVERAGE=ON,或者这里直接将OFF改为ON
@@ -41,7 +41,7 @@ message(STATUS "DISABLE_SIGNAL_CAPTURE:" ${DISABLE_SIGNAL_CAPTURE})
 message(STATUS "LIBRARY_OUTPUT_DIRECTORY:" ${LIBRARY_OUTPUT_DIRECTORY})
 message(STATUS "RUNTIME_OUTPUT_DIRECTORY:" ${RUNTIME_OUTPUT_DIRECTORY})
 
-include_directories(SYSTEM src)
+include_directories(SYSTEM src/stepcom)
 include_directories(SYSTEM /opt/homebrew/Cellar/boost/1.82.0_1/include)
 add_subdirectory(src)
 

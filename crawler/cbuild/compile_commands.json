@@ -1,7 +1,7 @@
 [
 {
   "directory": "/Users/pzxy/Workspace/C++/cplus_step/crawler/cbuild/src/app/demo",
-  "command": "g++  -isystem /Users/pzxy/Workspace/C++/cplus_step/crawler/src -isystem /opt/homebrew/Cellar/boost/1.82.0_1/include -g -std=c++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -Wall -Werror -Wfatal-errors -Werror=return-type -Werror=write-strings -Werror=unused-label -Werror=switch -o CMakeFiles/demo.dir/src/main.cc.o -c /Users/pzxy/Workspace/C++/cplus_step/crawler/src/app/demo/src/main.cc",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -isystem /Users/pzxy/Workspace/C++/cplus_step/crawler/src/stepcom -isystem /opt/homebrew/Cellar/boost/1.82.0_1/include -g -std=c++2b -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -Wall -Werror -Wfatal-errors -Werror=return-type -Werror=write-strings -Werror=unused-label -Werror=switch -o CMakeFiles/demo.dir/src/main.cc.o -c /Users/pzxy/Workspace/C++/cplus_step/crawler/src/app/demo/src/main.cc",
   "file": "/Users/pzxy/Workspace/C++/cplus_step/crawler/src/app/demo/src/main.cc",
   "output": "src/app/demo/CMakeFiles/demo.dir/src/main.cc.o"
 }
