@@ -15,7 +15,7 @@ set(CMAKE_VERBOSE_MAKEFILE OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # 设置项目名
-project(XCRAWLER)
+project(XCRAWLER CXX C)
 
 # 这些选项变量都是定义的，定义的这些变量可以通过 ${变量名} 的方式来使用。这里它的默认值就是OFF
 # 如果要启用某个选项，可以在cmake命令后面加上 -D变量名=ON，比如-DXENABLE_CODE_COVERAGE=ON,或者这里直接将OFF改为ON
@@ -27,9 +27,11 @@ option(DISABLE_SIGNAL_CAPTURE "disable all signal capture" OFF)# ON则禁用所�
 # LIBRARY_OUTPUT_DIRECTORY是CMake内置的变量之一。它用于指定构建生成库文件（静态库或共享库）的输出目录
 # 如果您没有显式地设置这个变量，CMake会默认将静态库和共享库都放置在${CMAKE_BINARY_DIR}/lib/目录下
 # 其中 CMAKE_BINARY_DIR是CMake内置的变量之一。它表示运行cmake命令时所在的构建目录.
-set(LIBRARY_OUTPUT_DIRECTORY ${XCRAWLER_BINARY_DIR}/lib/${CMAKE_SYSTEM_NAME}/)
 # RUNTIME_OUTPUT_DIRECTORY 变量用于指定生成的可执行文件和共享库等运行时输出目录。而 CMAKE_SOURCE_DIR 变量表示项目根目录的路径。
 # RUNTIME_OUTPUT_DIRECTORY 默认为 CMAKE_SOURCE_DIR/bin
+set(EXECUTABLE_OUTPUT_PATH ${XCRAWLER_BINARY_DIR}/bin/${CMAKE_SYSTEM_NAME}/)
+set(LIBRARY_OUTPUT_PATH ${XCRAWLER_BINARY_DIR}/lib/${CMAKE_SYSTEM_NAME}/)
+set(LIBRARY_OUTPUT_DIRECTORY ${XCRAWLER_BINARY_DIR}/lib/${CMAKE_SYSTEM_NAME}/)
 set(RUNTIME_OUTPUT_DIRECTORY ${XCRAWLER_BINARY_DIR}/bin/${CMAKE_SYSTEM_NAME}/)
 
 
