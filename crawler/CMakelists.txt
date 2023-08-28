@@ -44,6 +44,7 @@ message(STATUS "LIBRARY_OUTPUT_DIRECTORY:" ${LIBRARY_OUTPUT_DIRECTORY})
 message(STATUS "RUNTIME_OUTPUT_DIRECTORY:" ${RUNTIME_OUTPUT_DIRECTORY})
 
 include_directories(SYSTEM src/stepcom)
+include_directories(SYSTEM third_party)
 include_directories(SYSTEM /opt/homebrew/Cellar/boost/1.82.0_1/include)
 add_subdirectory(src)
 
