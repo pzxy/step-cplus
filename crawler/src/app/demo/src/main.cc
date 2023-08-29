@@ -1,17 +1,10 @@
+#include <httplib/httplib.h>
 #include <iostream>
-#include <iterator>
-#include <algorithm>
-#include <boost/lambda/lambda.hpp>
-#include <string>
+
 using namespace std;
 
 int main() {
-    using namespace boost::lambda;
-    typedef std::istream_iterator<int> in;
-    string s = R"(asd)";
-    cout << s << endl;
-    std::for_each(
-            in(std::cin), in(), std::cout << (_1 * 3) << " ");
-
+    httplib::Client cli("https://time.geekbang.org");
+    auto res = cli.Get("/resource?m=0&d=3&c=3");
+    cout << res->body << endl;
 }
-// g++ -v -I/opt/homebrew/Cellar/boost/1.82.0_1/include -L/opt/homebrew/Cellar/boost/1.82.0_1/lib file

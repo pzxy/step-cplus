@@ -13,15 +13,21 @@ set(CMAKE_C_EXTENSIONS OFF)
 set(CMAKE_VERBOSE_MAKEFILE OFF)
 # 生成编译命令的JSON文件，可以用于一些代码编辑器的自动补全和语法检查功能。默认根目录下的：compile_commands.json 文件。
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
+# macos设置依赖库搜索路径
+#set(CMAKE_PREFIX_PATH /path/to/library1;/path/to/library2 ${CMAKE_PREFIX_PATH})
+#set(CMAKE_PREFIX_PATH /opt/homebrew/lib ${CMAKE_PREFIX_PATH})
 # 设置项目名
 project(XCRAWLER CXX C)
-
+add_definitions("-DCPPHTTPLIB_OPENSSL_SUPPORT")
+#set(CMAKE_C_COMPILER gcc)
+#set(CMAKE_CXX_COMPILER g++)
+#set(CMAKE_C_COMPILER clang)
+#set(CMAKE_CXX_COMPILER clang++)
 # 这些选项变量都是定义的，定义的这些变量可以通过 ${变量名} 的方式来使用。这里它的默认值就是OFF
 # 如果要启用某个选项，可以在cmake命令后面加上 -D变量名=ON，比如-DXENABLE_CODE_COVERAGE=ON,或者这里直接将OFF改为ON
 option(DISABLE_CORE_SIGNAL_CAPTURE "disable core signal capture" OFF)# core signal capture
 option(DISABLE_SIGNAL_CAPTURE "disable all signal capture" OFF)# ON则禁用所有信号捕获
-
+find_package(OpenSSL REQUIRED)
 
 # XCRAWLER_BINARY_DIR : 注意，这是固定写法 工程名字(XCRAWLER)+“_BINARY_DIR” = 当前路径。
 # LIBRARY_OUTPUT_DIRECTORY是CMake内置的变量之一。它用于指定构建生成库文件（静态库或共享库）的输出目录
@@ -42,11 +48,15 @@ message(STATUS "DISABLE_CORE_SIGNAL_CAPTURE:" ${DISABLE_CORE_SIGNAL_CAPTURE})
 message(STATUS "DISABLE_SIGNAL_CAPTURE:" ${DISABLE_SIGNAL_CAPTURE})
 message(STATUS "LIBRARY_OUTPUT_DIRECTORY:" ${LIBRARY_OUTPUT_DIRECTORY})
 message(STATUS "RUNTIME_OUTPUT_DIRECTORY:" ${RUNTIME_OUTPUT_DIRECTORY})
+message(STATUS "CMAKE_PREFIX_PATH:" ${CMAKE_PREFIX_PATH})
 
+
+link_directories(${LIBRARY_OUTPUT_DIRECTORY})
 include_directories(SYSTEM src/stepcom)
-include_directories(SYSTEM third_party)
-include_directories(SYSTEM /opt/homebrew/Cellar/boost/1.82.0_1/include)
+#include_directories(SYSTEM third_party)
+include_directories(SYSTEM /opt/homebrew/include)
 add_subdirectory(src)
+#add_subdirectory(third_party)
 
 # if (XBUILD_TEST)
 #     enable_testing()

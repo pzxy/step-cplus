@@ -1,4 +1,5 @@
 aux_source_directory(./src src)
+#include_directories(/Users/pzxy/Workspace/C++/cplus_step/crawler/third_party/cpp-httplib)
 add_executable(demo ${src})
 
-# target_link_libraries(demo PRIVATE pthread)
+target_link_libraries(demo PRIVATE httplib)
