@@ -27,7 +27,7 @@ add_definitions("-DCPPHTTPLIB_OPENSSL_SUPPORT")
 # 如果要启用某个选项，可以在cmake命令后面加上 -D变量名=ON，比如-DXENABLE_CODE_COVERAGE=ON,或者这里直接将OFF改为ON
 option(DISABLE_CORE_SIGNAL_CAPTURE "disable core signal capture" OFF)# core signal capture
 option(DISABLE_SIGNAL_CAPTURE "disable all signal capture" OFF)# ON则禁用所有信号捕获
-find_package(OpenSSL REQUIRED)
+find_package(httplib REQUIRED)
 
 # XCRAWLER_BINARY_DIR : 注意，这是固定写法 工程名字(XCRAWLER)+“_BINARY_DIR” = 当前路径。
 # LIBRARY_OUTPUT_DIRECTORY是CMake内置的变量之一。它用于指定构建生成库文件（静态库或共享库）的输出目录
@@ -52,9 +52,10 @@ message(STATUS "CMAKE_PREFIX_PATH:" ${CMAKE_PREFIX_PATH})
 
 
 link_directories(${LIBRARY_OUTPUT_DIRECTORY})
-include_directories(SYSTEM src/stepcom)
+#include_directories(SYSTEM src/stepcom)
 #include_directories(SYSTEM third_party)
 include_directories(SYSTEM /opt/homebrew/include)
+include_directories(SYSTEM /usr/local/include)
 add_subdirectory(src)
 #add_subdirectory(third_party)
 

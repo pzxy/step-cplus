@@ -10,5 +10,5 @@ add_compile_options(
     -Werror=switch
 )
 
-add_subdirectory(stepcom)
+#add_subdirectory(stepcom)
 add_subdirectory(app)
