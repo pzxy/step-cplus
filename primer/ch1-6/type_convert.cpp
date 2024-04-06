@@ -1,19 +1,24 @@
 #include <iostream>
 #include <vector>
-using xbytes_t = std::vector<std::uint8_t>;
+
+using namespace std;
+using xbytes_t = vector<uint8_t>;
+
 void print_bytes(xbytes_t b);
-int main()
-{
+
+int main() {
     using namespace std;
     // string to bytes
-    std::string s1 = R"(hello world)";
-    xbytes_t b1 = {std::begin(s1), std::end(s1)};
-    std::cout << "b1: ";
+    string s1 = R"(hello world)";
+//    xbytes_t b1 = {std::begin(s1), std::end(s1)};
+    xbytes_t b1 = {s1.begin(), s1.end()};
+    cout << "b1: ";
     print_bytes(b1);
 
     // bytes to string
     xbytes_t b2 = {104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100};
-    std::string s2 = {std::begin(b2), std::end(b2)};
+//    std::string s2 = {std::begin(b2), std::end(b2)};
+    string s2 = {b2.begin(), b2.end()};
     std::cout << "s2: " << s2 << std::endl;
 
     // int to string
@@ -33,8 +38,7 @@ int main()
     int i5 = 258;
     int size4 = 4;
     std::vector<uint8_t> b5(size4, 0);
-    for (int i = 0; i < size4; i++)
-    {
+    for (int i = 0; i < size4; i++) {
         b5[size4 - 1 - i] = (i5 >> (i * 8));
     }
     std::cout << "b5: ";
@@ -44,8 +48,7 @@ int main()
     xbytes_t b6 = {0, 0, 1, 2}; // 258
     int i6;
     int size6 = b6.size();
-    for (int i = 0; i < size6; i++)
-    {
+    for (int i = 0; i < size6; i++) {
         i6 += b6[size6 - 1 - i] << (8 * i);
     }
     std::cout << "i6: " << i6 << std::endl;
@@ -67,8 +70,7 @@ int main()
     cout << "s7_5: " << s7_5 << endl;
 
     // insert bytes && implment append by insert
-    auto append = [](xbytes_t &a, xbytes_t &b)
-    {
+    auto append = [](xbytes_t &a, xbytes_t &b) {
         a.insert(a.end(), b.begin(), b.end());
     };
     xbytes_t b8 = {0, 0, 1, 0};
@@ -78,11 +80,9 @@ int main()
     print_bytes(b8);
 }
 
-void print_bytes(xbytes_t b)
-{
-    for (auto const &v : b)
-    {
-        std::cout << (int)v << ' ';
+void print_bytes(xbytes_t b) {
+    for (auto const &v: b) {
+        std::cout << (int) v << ' ';
     }
     std::cout << std::endl;
 }

@@ -3,9 +3,13 @@
 
 ## 1. 整型
 short：至少16位，是 short int 简称
+
 int： 至少等于short
+
 long：至少32，且至少等于int。long int 简称
+
 long long：至少64
+
 总结：现在的系统基本上都是64位的，直接理解int 就是 int32， long long就是int64 
 在go的int，32位系统是int32，64位系统是int64.
 rust什么样子的？
