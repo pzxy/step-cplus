@@ -22,7 +22,7 @@ void string2byte()
 {
     cout << "> string to bytes" << endl;
     string s = "10086 world";
-    vector<unsigned char> bytes{s.begin(), s.end()};
+    vector<uint8_t> bytes{s.begin(), s.end()};
     std::cout << "string: " << s << std::endl;
     cout << "string[3]: " << bytes[3] << endl;
     cout << "Bytes: ";

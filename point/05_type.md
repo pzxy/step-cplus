@@ -18,6 +18,7 @@ typedef short int wchar_t;
 ```
 # 修饰符类型
 c++允许在 char、int 和 double 数据类型前放置修饰符
+
 |类型|解释|
 |-|-|
 |signed|表示变量可以存储负数。对于整型变量来说，signed 可以省略，因为整型变量默认为有符号类型。|
