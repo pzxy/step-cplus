@@ -46,9 +46,12 @@ private:
     MyAllocList<T> list; // 没有“typename”，没有“::type”
 };
 
-// 2.5 在2.3中为什么要加上 typename呢？这是因为编译器不确定 MyAllocList<T>::type 是一个类型。因为可能存在一个MyAllocList的它们没见到的特化版本，那个版本的MyAllocList<T>::type指代了一种不是类型的东西
-// 那么在2.4中编译器可以直接确定这是一个类型。当编译器处理Widget模板时遇到MyAllocList<T>（使用模板别名声明的版本），它们知道MyAllocList<T>是一个类型名，因为MyAllocList是一个别名模板：它一定是一个类型名。因此MyAllocList<T>就是一个非依赖类型（non-dependent type），就不需要也不允许使用typename修饰符。
-// 看下面的例子： MyAllocList<Wine>::type不是一个类型。如果Widget使用Wine实例化，在Widget模板中的MyAllocList<Wine>::type将会是一个数据成员，不是一个类型。
+// 2.5 在2.3中为什么要加上 typename呢？这是因为编译器不确定 MyAllocList<T>::type 是一个类型。因为可能存在一个MyAllocList的它们没见到的特化版本，
+// 那个版本的MyAllocList<T>::type指代了一种不是类型的东西
+// 那么在2.4中编译器可以直接确定这是一个类型。当编译器处理Widget模板时遇到MyAllocList<T>（使用模板别名声明的版本），它们知道MyAllocList<T>是一个类型名，
+// 因为MyAllocList是一个别名模板：它一定是一个类型名。因此MyAllocList<T>就是一个非依赖类型（non-dependent type），就不需要也不允许使用typename修饰符。
+// 看下面的例子： MyAllocList<Wine>::type不是一个类型。如果Widget使用Wine实例化，在Widget模板中的MyAllocList<Wine>::type将会是一个数据成员，
+// 不是一个类型。
 // 在Widget模板内，MyAllocList<T>::type是否表示一个类型取决于T是什么，这就是为什么编译器会坚持要求你在前面加上typename
 class Wine
 {
