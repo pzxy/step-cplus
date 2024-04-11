@@ -61,4 +61,4 @@ private:
         return ifEqual(A->left, B->right) && ifEqual(A->right, B->left);
     }
 };
-// 核心： 左节点等于右节点，
+// 核心： A左节点等于B右节点，
