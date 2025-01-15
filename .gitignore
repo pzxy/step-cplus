@@ -9,3 +9,4 @@ cmake/demo8/_CPack_Packages
 cmake/demo8/demo8*
 crawler/cbuild*
 crawler/cmake-build-debug*
+cmake-build-debug

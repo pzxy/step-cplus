@@ -5,4 +5,7 @@ using namespace std;
 // 2. 不适合使用make函数的情况包括需要指定自定义删除器和希望用花括号初始化。
 // 3. 对于std::shared_ptrs，其他不建议使用make函数的情况包括(1)有自定义内存管理的类；(2)特别关注内存的系统，非常大的对象，以及std::weak_ptrs比对应的std::shared_ptrs活得更久。
 // 4. c++11没有make_unique，c++14才有呢。
-int main() {}
+int main() {
+
+
+}
